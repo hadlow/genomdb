@@ -1,0 +1,7 @@
+method: POST
+endpoint: http://localhost:7001/
+headers:
+  - Content-Type: application/json
+  - Accept: application/json
+allow-headers:
+  - Content-Type
