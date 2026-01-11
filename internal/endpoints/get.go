@@ -2,23 +2,33 @@ package endpoints
 
 import (
 	"net/http"
+
+	"github.com/hadlow/genomdb/internal/database"
+	"github.com/hadlow/genomdb/types"
 )
 
-func Get(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
+type ServerInterface interface {
+	GetDatabase() *database.Database
+	GetConfig() *types.Config
+}
 
-	// key := r.Form.Get("key")
-	// value, err := e.DB.Get(key)
+func Get(s ServerInterface) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		r.ParseForm()
 
-	// shard := helpers.GetShard(key, 2)
+		// Now you have access to s.GetDatabase(), s.GetConfig(), etc.
+		// key := r.Form.Get("key")
+		// value, err := s.GetDatabase().Get(key)
 
-	// if shard != e.ShardId {
-	// 	helpers.Route(w, r, shard)
+		// shard := helpers.GetShard(key, 2)
 
-	// 	return
-	// }
+		// if shard != s.GetConfig().ShardId {
+		// 	helpers.Route(w, r, shard)
+		// 	return
+		// }
 
-	// if err != nil {
-	// 	log.Fatal("Error getting value")
-	// }
+		// if err != nil {
+		// 	log.Fatal("Error getting value")
+		// }
+	}
 }

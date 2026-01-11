@@ -1,29 +1,26 @@
 package endpoints
 
 import (
-	"fmt"
 	"net/http"
 )
 
-func Set(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
+func Set(s ServerInterface) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		r.ParseForm()
 
-	// key := r.Form.Get("key")
-	// value := r.Form.Get("data")
+		// Now you have access to s.GetDatabase(), s.GetConfig(), etc.
+		// key := r.Form.Get("key")
+		// value, err := s.GetDatabase().Get(key)
 
-	// shard := helpers.GetShard(key, 2)
+		// shard := helpers.GetShard(key, 2)
 
-	// err := e.DB.Set(key, []byte(value))
+		// if shard != s.GetConfig().ShardId {
+		// 	helpers.Route(w, r, shard)
+		// 	return
+		// }
 
-	// if shard != e.ShardId {
-	// 	helpers.Route(w, r, shard)
-
-	// 	return
-	// }
-
-	// if err != nil {
-	// 	log.Fatal("Error setting value")
-	// }
-
-	fmt.Println("Key value set")
+		// if err != nil {
+		// 	log.Fatal("Error getting value")
+		// }
+	}
 }

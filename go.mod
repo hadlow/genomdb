@@ -3,14 +3,15 @@ module github.com/hadlow/genomdb
 go 1.20
 
 require (
-	go.etcd.io/bbolt v1.3.5
 	github.com/google/go-cmp v0.6.0
+	github.com/hadlow/sendex v1.3.0
 	github.com/spf13/cobra v1.8.1
-	github.com/tidwall/pretty v1.2.1
+	go.etcd.io/bbolt v1.3.5
 	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
+	golang.org/x/sys v0.0.0-20200202164722-d101bd2416d5 // indirect
 )

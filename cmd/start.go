@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"log"
-	"os"
 
 	"github.com/spf13/cobra"
 
@@ -10,7 +9,6 @@ import (
 	"github.com/hadlow/genomdb/internal/server"
 )
 
-// startCmd represents the run command
 var startCmd = &cobra.Command{
 	Use:   "start [FILE]",
 	Short: "Start a new node",
@@ -21,18 +19,14 @@ var startCmd = &cobra.Command{
 
 		config, err := file.Get(path)
 		if err != nil {
-			os.Exit(1)
-		}
-
-		if err != nil {
-			log.Fatalf("Error opening database: %d", err)
+			log.Fatalf("Error opening config file: %d", err)
 		}
 
 		s := server.NewServer(&config)
 
 		err = s.Serve()
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalf("Error starting server: %d", err)
 		}
 
 		s.Close()

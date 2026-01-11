@@ -55,8 +55,8 @@ func (s *Server) Serve() error {
 	shard := findNextAvailableNode(s.config.Shards)
 
 	http.HandleFunc("/ping", endpoints.Ping)
-	http.HandleFunc("/get", endpoints.Get)
-	http.HandleFunc("/set", endpoints.Set)
+	http.HandleFunc("/get", endpoints.Get(s))
+	http.HandleFunc("/set", endpoints.Set(s))
 
 	err := http.ListenAndServe(shard.Host+":"+strconv.Itoa(shard.Port), nil)
 
@@ -71,4 +71,12 @@ func (s *Server) Serve() error {
 
 func (s *Server) Close() {
 	s.close()
+}
+
+func (s *Server) GetDatabase() *database.Database {
+	return s.database
+}
+
+func (s *Server) GetConfig() *types.Config {
+	return s.config
 }
